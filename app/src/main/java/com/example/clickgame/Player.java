@@ -10,6 +10,7 @@ public class Player {
     public int robotearth = 0;
     public int robotwind = 2;
     public  int multiplier=0;
+    public int factor = 1;
 
 
 

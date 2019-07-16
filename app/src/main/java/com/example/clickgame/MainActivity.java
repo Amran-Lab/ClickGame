@@ -156,10 +156,10 @@ public class MainActivity extends AppCompatActivity {
                                   public void run() {
 
                                       try {
-                                          player.earthcounter = player.earthcounter + 0.1 * player.robotearth;
-                                          player.firecounter = player.firecounter + 0.1 * player.robotfire;
-                                          player.watercounter = player.watercounter + 0.1 * player.robotwater;
-                                          player.windcounter = player.windcounter + 0.1 * player.robotwind;
+                                          player.earthcounter = player.earthcounter + 0.1 * player.robotearth*player.factor;
+                                          player.firecounter = player.firecounter + 0.1 * player.robotfire*player.factor;
+                                          player.watercounter = player.watercounter + 0.1 * player.robotwater*player.factor;
+                                          player.windcounter = player.windcounter + 0.1 * player.robotwind*player.factor;
 
 
                                           count("Earth:", player.earthcounter, "earth_counter");
@@ -221,4 +221,6 @@ public class MainActivity extends AppCompatActivity {
                 count / Math.pow(1000, exp),
                 "kMGTPE".charAt(exp - 1));
     }
+
+
 }
