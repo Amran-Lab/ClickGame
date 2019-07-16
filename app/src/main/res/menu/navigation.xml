@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_main"
+        android:icon="@drawable/ic_android_black_24dp"
+        android:title="Main"/>
+
+    <item
+        android:id="@+id/navigation_upgrades"
+        android:icon="@drawable/ic_android_black_24dp"
+        android:title="Upgrades"/>
+
+    <item
+        android:id="@+id/navigation_hero"
+        android:icon="@drawable/ic_android_black_24dp"
+
+        android:title="Hero"/>
+    <item
+        android:id="@+id/navigation_arena"
+        android:icon="@drawable/ic_android_black_24dp"
+
+        android:title="Arena"/>
+</menu>
