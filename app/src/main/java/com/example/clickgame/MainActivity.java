@@ -1,7 +1,14 @@
 package com.example.clickgame;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.BroadcastReceiver;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Button;
 import android.view.View;
@@ -13,26 +20,92 @@ import java.util.TimerTask;
 
 import android.os.Bundle;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MainActivity extends AppCompatActivity {
     Player player = new Player();
     final String MY_PREFS_NAME = "MyPlayerPrefsFile";
 
     Context context;
+    //LevelReceiver levelReceiver;
 
     private Button robotf;
     private Button robotw;
     private Button robote;
     private Button robotwi;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        load();
+
+
+        long tEnd = System.currentTimeMillis();
+        long tDelta = tEnd - player.timeend;
+        double elapsedSeconds = tDelta / 1000.0;
+        TextView textView = (TextView) findViewById(R.id.textView3);
+        textView.setText("Elapsed Time " +elapsedSeconds);
+        player.earthcounter = player.earthcounter + elapsedSeconds * player.robotearth * player.factor;
+        player.firecounter = player.firecounter + elapsedSeconds * player.robotfire * player.factor;
+        player.watercounter = player.watercounter + elapsedSeconds * player.robotwater * player.factor;
+        player.windcounter = player.windcounter + elapsedSeconds * player.robotwind * player.factor;
+
+
+        count("Earth:", player.earthcounter, "earth_counter");
+        count("Water:", player.watercounter, "water_counter");
+        count("Fire:", player.firecounter, "fire_counter");
+        count("Wind:", player.windcounter, "wind_counter");
+
+
+        //levelReceiver = new LevelReceiver();
+
+        //Intent intent = new Intent(this, Background.class);
+        //startService(intent);
+
+
+
+
+        //registerReceiver(levelReceiver, new IntentFilter("Fire Counter"));
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_main:
+                        Toast.makeText(MainActivity.this, "Main", Toast.LENGTH_SHORT).show();
+
+                        break;
+                    case R.id.navigation_upgrades:
+
+                        startActivity(new Intent(MainActivity.this, UpgradeActivity.class));
+                        player.timeend = System.currentTimeMillis();
+                        save();
+
+                        break;
+                    case R.id.navigation_hero:
+
+                        Toast.makeText(MainActivity.this, "Hero", Toast.LENGTH_SHORT).show();
+
+                        break;
+                    case R.id.navigation_arena:
+                        Toast.makeText(MainActivity.this, "Arena", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return false;
+            }
+        });
+
+
         Button buttonf = findViewById(R.id.fire_button);
         buttonf.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 player.fireup();
                 count("Fire:", player.firecounter, "fire_counter");
+                save();
+
 
             }
 
@@ -51,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
         Button buttone = findViewById(R.id.earth_button);
         buttone.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                player.earthup();
 
                 count("Earth:", player.earthcounter, "earth_counter");
             }
@@ -156,16 +228,19 @@ public class MainActivity extends AppCompatActivity {
                                   public void run() {
 
                                       try {
-                                          player.earthcounter = player.earthcounter + 0.1 * player.robotearth*player.factor;
-                                          player.firecounter = player.firecounter + 0.1 * player.robotfire*player.factor;
-                                          player.watercounter = player.watercounter + 0.1 * player.robotwater*player.factor;
-                                          player.windcounter = player.windcounter + 0.1 * player.robotwind*player.factor;
+                                          player.earthcounter = player.earthcounter + 0.1 * player.robotearth * player.factor;
+                                          player.firecounter = player.firecounter + 0.1 * player.robotfire * player.factor;
+                                          player.watercounter = player.watercounter + 0.1 * player.robotwater * player.factor;
+                                          player.windcounter = player.windcounter + 0.1 * player.robotwind * player.factor;
 
 
                                           count("Earth:", player.earthcounter, "earth_counter");
                                           count("Water:", player.watercounter, "water_counter");
                                           count("Fire:", player.firecounter, "fire_counter");
                                           count("Wind:", player.windcounter, "wind_counter");
+
+                                          //receiver = new WifiLevelReceiver();
+                                          //registerReceiver(receiver, new IntentFilter("Get_Level"));
 
                                       } catch (Exception e) {
                                           e.printStackTrace();
@@ -206,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
     public void count(String counter, double element, String textID) {
         int resID = getResources().getIdentifier(textID, "id", getPackageName());
         TextView textView = (TextView) findViewById(resID);
@@ -221,6 +297,40 @@ public class MainActivity extends AppCompatActivity {
                 count / Math.pow(1000, exp),
                 "kMGTPE".charAt(exp - 1));
     }
+
+    public void save() {
+        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putInt("Fire Counter", (int) player.firecounter);
+        editor.putInt("Water Counter", (int) player.watercounter);
+        editor.putInt("Earth Counter", (int) player.earthcounter);
+        editor.putInt("Wind Counter", (int) player.windcounter);
+        editor.putInt("Fire Robot", player.robotfire);
+        editor.putInt("Water Robot", player.robotwater);
+        editor.putInt("Earth Robot", player.robotearth);
+        editor.putInt("Wind Robot", player.robotwind);
+        editor.putLong("Time End",player.timeend);
+
+
+
+        editor.apply();
+    }
+
+    public void load() {
+        SharedPreferences pref = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        player.firecounter = pref.getInt("Fire Counter", 0);
+        player.watercounter = pref.getInt("Water Counter", 0);
+        player.earthcounter = pref.getInt("Earth Counter", 0);
+        player.windcounter = pref.getInt("Wind Counter", 0);
+        player.robotfire = pref.getInt("Fire Robot", 0);
+        player.robotwater = pref.getInt("Water Robot", 0);
+        player.robotearth = pref.getInt("Earth Robot", 0);
+        player.robotwind = pref.getInt("Wind Robot", 0);
+        player.timeend = pref.getLong("Time End",0);
+
+
+    }
+
+
 
 
 }

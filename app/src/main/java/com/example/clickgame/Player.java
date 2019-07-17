@@ -1,5 +1,8 @@
 package com.example.clickgame;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 public class Player {
     public double firecounter = 80;
     public double watercounter = 80;
@@ -11,6 +14,11 @@ public class Player {
     public int robotwind = 2;
     public  int multiplier=0;
     public int factor = 1;
+    public long timeend = 0;
+    public boolean f1 = Boolean.parseBoolean("False");
+    public boolean f2 = Boolean.parseBoolean("False");
+    public boolean f3 = Boolean.parseBoolean("False");
+    public boolean f4 = Boolean.parseBoolean("False");
 
 
 
@@ -37,6 +45,7 @@ public class Player {
         robotfire = robotfire + (int)(Math.pow(10, multiplier));
 
 
+
     }
     public void waterrobot() {
         robotwater= robotwater +(int)(Math.pow(10, multiplier));
@@ -50,5 +59,8 @@ public class Player {
         robotwind= robotearth + (int)(Math.pow(10, multiplier));
 
     }
+
+
+
 
 }
