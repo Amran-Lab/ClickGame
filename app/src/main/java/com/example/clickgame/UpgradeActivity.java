@@ -16,6 +16,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class UpgradeActivity extends AppCompatActivity {
     Player player = new Player();
     final String MY_PREFS_NAME = "MyPlayerPrefsFile";
+    Button click1;
+    Button click2;
+    Button click3;
+    Button click4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,8 @@ public class UpgradeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_upgrade);
 
         load();
+        tranparancy(player.clicker);
+
 
         BottomNavigationView bottomNavigationView;
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
@@ -111,7 +117,8 @@ public class UpgradeActivity extends AppCompatActivity {
 
             }
         });
-        Button click1 = (Button) findViewById(R.id.click1);
+        click1 = (Button) findViewById(R.id.click1);
+
         click1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,6 +127,8 @@ public class UpgradeActivity extends AppCompatActivity {
                     player.clicker = 5;
                     player.f1 = Boolean.parseBoolean("True");
                     player.f2 = Boolean.parseBoolean("False");
+                    tranparancy(player.clicker);
+
                     save();
 
                 }
@@ -127,7 +136,7 @@ public class UpgradeActivity extends AppCompatActivity {
 
             }
         });
-        Button click2 = (Button) findViewById(R.id.click2);
+        click2 = (Button) findViewById(R.id.click2);
         click2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,13 +146,14 @@ public class UpgradeActivity extends AppCompatActivity {
                     player.f2 = Boolean.parseBoolean("True");
                     player.f3 = Boolean.parseBoolean("False");
                     save();
+                    tranparancy(player.clicker);
 
                 }
 
 
             }
         });
-        Button click3 = (Button) findViewById(R.id.click3);
+        click3 = (Button) findViewById(R.id.click3);
         click3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,13 +163,14 @@ public class UpgradeActivity extends AppCompatActivity {
                     player.f3 = Boolean.parseBoolean("True");
                     player.f4 = Boolean.parseBoolean("False");
                     save();
+                    tranparancy(player.clicker);
 
                 }
 
 
             }
         });
-        Button click4 = (Button) findViewById(R.id.click4);
+        click4 = (Button) findViewById(R.id.click4);
         click4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,6 +179,7 @@ public class UpgradeActivity extends AppCompatActivity {
                     player.clicker = 200;
                     player.f4 = Boolean.parseBoolean("True");
                     save();
+                    tranparancy(player.clicker);
 
                 }
 
@@ -220,6 +232,24 @@ public class UpgradeActivity extends AppCompatActivity {
         player.f4 = pref.getBoolean("Check 4",false);
 
 
+    }
+    public void tranparancy(int light){
+        click1 = (Button) findViewById(R.id.click1);
+        if (light>4){
+            click1.getBackground().setAlpha(64);
+        }
+        click2 = (Button) findViewById(R.id.click2);
+        if (light>9){
+            click2.getBackground().setAlpha(64);
+        }
+        click3 = (Button) findViewById(R.id.click3);
+        if (light>49){
+            click3.getBackground().setAlpha(64);
+        }
+        click4 = (Button) findViewById(R.id.click4);
+        if (light>99){
+            click4.getBackground().setAlpha(64);
+        }
     }
 
 }

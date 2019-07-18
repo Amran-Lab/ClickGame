@@ -23,9 +23,10 @@
         android:id="@+id/zero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="100dp"
         android:text="zero"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,9 +34,10 @@
         android:id="@+id/grand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:text="Grand"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/zero" />
 
@@ -43,16 +45,64 @@
         android:id="@+id/rich"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:text="Rich"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/grand" />
 
     <HorizontalScrollView
+        android:id="@+id/horizontalScrollView2"
         android:layout_width="0dp"
         android:layout_height="63dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/robot1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="x5" />
+
+            <Button
+                android:id="@+id/robot2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="x10" />
+
+            <Button
+                android:id="@+id/robot3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="x50" />
+
+            <Button
+                android:id="@+id/robot4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="x200" />
+
+            <Button
+                android:id="@+id/robot5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Button" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="0dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rich">
@@ -93,5 +143,22 @@
                 android:text="Button" />
         </LinearLayout>
     </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+
+        android:text="Fire Counter \nWater Counter \nEarth Counter \nWind Counter
+                     \nFire Robot \nWater Robot \nEarth Robot \nWind Robot \nClick Power \nRobot Power \nTotal Robot Power"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/zero"
+
+        app:layout_constraintTop_toTopOf="@+id/zero" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -33,34 +34,50 @@
         <Button
             android:id="@+id/fire_button"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/colorblue"
             android:layout_weight="1"
-            android:text="fire token" />
+            android:text="fire" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.1" />
 
         <Button
             android:id="@+id/water_button"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:background="@color/colorblue"
             android:layout_weight="1"
-            android:text="water token" />
+            android:text="water" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.1" />
 
         <Button
             android:id="@+id/earth_button"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
+            android:background="@color/colorblue"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="earth token" />
+            android:text="earth" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.1" />
 
         <Button
             android:id="@+id/wind_button"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="match_parent"
+            android:background="@color/colorblue"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="water token" />
+            android:text="water" />
     </LinearLayout>
 
     <LinearLayout
@@ -109,7 +126,7 @@
         android:layout_height="65dp"
         android:layout_marginTop="40dp"
         android:orientation="horizontal"
-        android:weightSum="2"
+        android:weightSum="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekText">
@@ -117,15 +134,21 @@
         <Button
             android:id="@+id/robot_fire"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
+            android:background="@color/colorblue"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="fire robot" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.1" />
 
         <Button
             android:id="@+id/robot_water"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
+            android:background="@color/colorblue"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="water robot" />
@@ -137,7 +160,7 @@
         android:layout_height="65dp"
         android:layout_marginTop="5dp"
         android:orientation="horizontal"
-        android:weightSum="2"
+        android:weightSum="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -146,15 +169,21 @@
         <Button
             android:id="@+id/robot_earth"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
+            android:background = "@color/colorblue"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="earth robot" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.1" />
 
         <Button
             android:id="@+id/robot_wind"
             style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
+            android:background="@color/colorblue"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="wind robot" />
@@ -171,7 +200,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:max="10"
-        android:progress="3"
+        android:progress="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
