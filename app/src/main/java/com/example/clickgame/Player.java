@@ -14,18 +14,21 @@ public class Player {
     public int robotwind = 2;
     public  int multiplier=0;
     public int factor = 1;
+    public int clicker = 1;
     public long timeend = 0;
     public boolean f1 = Boolean.parseBoolean("False");
     public boolean f2 = Boolean.parseBoolean("False");
     public boolean f3 = Boolean.parseBoolean("False");
     public boolean f4 = Boolean.parseBoolean("False");
 
+    public boolean[] array = new boolean[4];
+
 
 
 
 
     public void fireup() {
-        firecounter++;
+        firecounter = firecounter +clicker;
 
 
     }

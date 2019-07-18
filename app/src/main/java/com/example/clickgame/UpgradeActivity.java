@@ -22,6 +22,8 @@ public class UpgradeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upgrade);
 
+        load();
+
         BottomNavigationView bottomNavigationView;
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationView);
 
@@ -64,6 +66,12 @@ public class UpgradeActivity extends AppCompatActivity {
                 player.robotearth = 0;
                 player.robotwater = 0;
                 player.robotfire = 0;
+                player.clicker = 1;
+                player.factor = 1;
+                player.f1 = Boolean.parseBoolean("False");
+                player.f2 = Boolean.parseBoolean("True");
+                player.f3 = Boolean.parseBoolean("True");
+                player.f4 = Boolean.parseBoolean("True");
                 save();
 
             }
@@ -80,6 +88,7 @@ public class UpgradeActivity extends AppCompatActivity {
                 player.robotearth = 0;
                 player.robotwater = 0;
                 player.robotfire = 10;
+                player.factor = 1;
                 save();
 
 
@@ -97,10 +106,75 @@ public class UpgradeActivity extends AppCompatActivity {
                 player.robotearth = 100;
                 player.robotwater = 100;
                 player.robotfire = 100;
+                player.factor = 1;
                 save();
 
             }
         });
+        Button click1 = (Button) findViewById(R.id.click1);
+        click1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!player.f1){
+
+                    player.clicker = 5;
+                    player.f1 = Boolean.parseBoolean("True");
+                    player.f2 = Boolean.parseBoolean("False");
+                    save();
+
+                }
+
+
+            }
+        });
+        Button click2 = (Button) findViewById(R.id.click2);
+        click2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!player.f2){
+
+                    player.clicker = 10;
+                    player.f2 = Boolean.parseBoolean("True");
+                    player.f3 = Boolean.parseBoolean("False");
+                    save();
+
+                }
+
+
+            }
+        });
+        Button click3 = (Button) findViewById(R.id.click3);
+        click3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!player.f3){
+
+                    player.clicker = 50;
+                    player.f3 = Boolean.parseBoolean("True");
+                    player.f4 = Boolean.parseBoolean("False");
+                    save();
+
+                }
+
+
+            }
+        });
+        Button click4 = (Button) findViewById(R.id.click4);
+        click4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!player.f4){
+
+                    player.clicker = 200;
+                    player.f4 = Boolean.parseBoolean("True");
+                    save();
+
+                }
+
+
+            }
+        });
+
 
     }
     public void save() {
@@ -113,11 +187,39 @@ public class UpgradeActivity extends AppCompatActivity {
         editor.putInt("Water Robot", player.robotwater);
         editor.putInt("Earth Robot", player.robotearth);
         editor.putInt("Wind Robot", player.robotwind);
+        editor.putInt("Factor",player.factor);
+        editor.putInt("Clicker",player.clicker);
+        editor.putBoolean("Check 1",player.f1);
+        editor.putBoolean("Check 2",player.f2);
+        editor.putBoolean("Check 3",player.f3);
+        editor.putBoolean("Check 4",player.f4);
+
+
 
 
 
 
         editor.apply();
+    }
+    public void load() {
+        SharedPreferences pref = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
+        player.firecounter = pref.getInt("Fire Counter", 0);
+        player.watercounter = pref.getInt("Water Counter", 0);
+        player.earthcounter = pref.getInt("Earth Counter", 0);
+        player.windcounter = pref.getInt("Wind Counter", 0);
+        player.robotfire = pref.getInt("Fire Robot", 0);
+        player.robotwater = pref.getInt("Water Robot", 0);
+        player.robotearth = pref.getInt("Earth Robot", 0);
+        player.robotwind = pref.getInt("Wind Robot", 0);
+        player.timeend = pref.getLong("Time End",0);
+        player.factor = pref.getInt("Factor",0);
+        player.clicker = pref.getInt("Clicker",0);
+        player.f1 = pref.getBoolean("Check 1",false);
+        player.f2 = pref.getBoolean("Check 2",false);
+        player.f3 = pref.getBoolean("Check 3",false);
+        player.f4 = pref.getBoolean("Check 4",false);
+
+
     }
 
 }

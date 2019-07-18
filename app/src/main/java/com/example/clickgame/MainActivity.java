@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttone = findViewById(R.id.earth_button);
         buttone.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                player.earthup();
 
                 count("Earth:", player.earthcounter, "earth_counter");
             }
@@ -309,6 +310,8 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt("Earth Robot", player.robotearth);
         editor.putInt("Wind Robot", player.robotwind);
         editor.putLong("Time End",player.timeend);
+        editor.putInt("Factor",player.factor);
+        editor.putInt("Clicker",player.clicker);
 
 
 
@@ -326,6 +329,8 @@ public class MainActivity extends AppCompatActivity {
         player.robotearth = pref.getInt("Earth Robot", 0);
         player.robotwind = pref.getInt("Wind Robot", 0);
         player.timeend = pref.getLong("Time End",0);
+        player.factor = pref.getInt("Factor",0);
+        player.clicker = pref.getInt("Clicker",0);
 
 
     }
