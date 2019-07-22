@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
     Context context;
     //LevelReceiver levelReceiver;
 
-    private Button robotf;
-    private Button robotw;
-    private Button robote;
-    private Button robotwi;
+    Button robotf;
+    Button robotw;
+    Button robote;
+    Button robotwi;
 
 
     @Override
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         load();
+        //transparancy1();
 
 
         long tEnd = System.currentTimeMillis();
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_upgrades:
 
                         startActivity(new Intent(MainActivity.this, UpgradeActivity.class));
+                        overridePendingTransition(0, 0);
                         player.timeend = System.currentTimeMillis();
                         save();
 
@@ -104,6 +106,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 player.fireup();
                 count("Fire:", player.firecounter, "fire_counter");
+                if (player.firecounter<100){
+                    robotf.getBackground().setAlpha(64);
+                }
+                else {
+                    robotf.getBackground().setAlpha(255);
+                }
+
+
                 save();
 
 
@@ -149,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 if (player.firecounter > startup) {
                     player.firerobot();
                     player.firecounter = player.firecounter - cost;
+
 
                     robotf.setText("Fire Robot " + player.robotfire);
 
@@ -229,10 +240,10 @@ public class MainActivity extends AppCompatActivity {
                                   public void run() {
 
                                       try {
-                                          player.earthcounter = player.earthcounter + 0.1 * player.robotearth * player.factor;
-                                          player.firecounter = player.firecounter + 0.1 * player.robotfire * player.factor;
-                                          player.watercounter = player.watercounter + 0.1 * player.robotwater * player.factor;
-                                          player.windcounter = player.windcounter + 0.1 * player.robotwind * player.factor;
+                                          player.earthcounter = player.earthcounter +  player.robotearth * player.factor;
+                                          player.firecounter = player.firecounter +  player.robotfire * player.factor;
+                                          player.watercounter = player.watercounter +  player.robotwater * player.factor;
+                                          player.windcounter = player.windcounter +  player.robotwind * player.factor;
 
 
                                           count("Earth:", player.earthcounter, "earth_counter");
@@ -240,8 +251,14 @@ public class MainActivity extends AppCompatActivity {
                                           count("Fire:", player.firecounter, "fire_counter");
                                           count("Wind:", player.windcounter, "wind_counter");
 
+
                                           //receiver = new WifiLevelReceiver();
                                           //registerReceiver(receiver, new IntentFilter("Get_Level"));
+
+
+
+
+
 
                                       } catch (Exception e) {
                                           e.printStackTrace();
@@ -256,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
 
                 50,
 
-                100);
+                1000);
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBar);
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -334,6 +351,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
 
 
