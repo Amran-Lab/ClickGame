@@ -20,6 +20,11 @@ public class UpgradeActivity extends AppCompatActivity {
     Button click2;
     Button click3;
     Button click4;
+    Button robot1;
+    Button robot2;
+    Button robot3;
+    Button robot4;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,7 @@ public class UpgradeActivity extends AppCompatActivity {
 
         load();
         tranparancy(player.clicker);
+        robottransparent();
 
 
         BottomNavigationView bottomNavigationView;
@@ -41,6 +47,7 @@ public class UpgradeActivity extends AppCompatActivity {
                     case R.id.navigation_main:
 
                         startActivity(new Intent(UpgradeActivity.this, MainActivity.class));
+                        overridePendingTransition(0, 0);
 
                         break;
                     case R.id.navigation_upgrades:
@@ -186,6 +193,55 @@ public class UpgradeActivity extends AppCompatActivity {
 
             }
         });
+        robot1 = (Button) findViewById(R.id.robot1);
+        robot1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(player.factor==1){
+                    player.factor = 5;
+                    robottransparent();
+                    save();
+                }
+
+            }
+        });
+        robot2 = (Button) findViewById(R.id.robot2);
+        robot2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(player.factor==5){
+                    player.factor = 10;
+                    robottransparent();
+                    save();
+                }
+
+            }
+        });
+        robot3 = (Button) findViewById(R.id.robot3);
+        robot3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(player.factor==10){
+                    player.factor = 50;
+                    robottransparent();
+                    save();
+                }
+
+            }
+        });
+        robot4 = (Button) findViewById(R.id.robot4);
+        robot4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(player.factor==50){
+                    player.factor = 100;
+                    robottransparent();
+                    save();
+                }
+
+            }
+        });
+
 
 
     }
@@ -250,6 +306,27 @@ public class UpgradeActivity extends AppCompatActivity {
         if (light>99){
             click4.getBackground().setAlpha(64);
         }
+
+
+    }
+    public void robottransparent(){
+        robot1 = (Button) findViewById(R.id.robot1);
+        if (player.factor>1){
+            robot1.getBackground().setAlpha(64);
+        }
+        robot2 = (Button) findViewById(R.id.robot2);
+        if (player.factor>5){
+            robot2.getBackground().setAlpha(64);
+        }
+        robot3 = (Button) findViewById(R.id.robot3);
+        if (player.factor>10){
+            robot3.getBackground().setAlpha(64);
+        }
+        robot4 = (Button) findViewById(R.id.robot4);
+        if (player.factor>50){
+            robot4.getBackground().setAlpha(64);
+        }
+
     }
 
 }

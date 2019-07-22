@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_main"
-        android:icon="@drawable/ic_android_black_24dp"
+        android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="Main"/>
 
     <item
         android:id="@+id/navigation_upgrades"
-        android:icon="@drawable/ic_android_black_24dp"
+        android:icon="@drawable/ic_add_box_black_24dp"
         android:title="Upgrades"/>
 
     <item
         android:id="@+id/navigation_hero"
-        android:icon="@drawable/ic_android_black_24dp"
+        android:icon="@drawable/ic_account_box_black_24dp"
 
         android:title="Hero"/>
     <item
         android:id="@+id/navigation_arena"
-        android:icon="@drawable/ic_android_black_24dp"
+        android:icon="@drawable/ic_account_balance_black_24dp"
 
         android:title="Arena"/>
 </menu>
